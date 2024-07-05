@@ -1,10 +1,11 @@
-import "./App.css";
+import ShopBud from "./components/ShopBud";
 
 function App() {
   return (
     <>
       <div>
-        <h1 className="header">ShopBud</h1>
+        {/*className="flex justify-center items-center min-h-100vh font-sans"*/}
+        <ShopBud />
       </div>
     </>
   );
