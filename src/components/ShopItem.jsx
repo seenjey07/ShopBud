@@ -37,24 +37,22 @@ const ShopItem = ({ id, itemName, handleEditItem, handleDeleteItem }) => {
 
         <div className="flex flex-row justify-between">
           <button
-            className="ml-1 py-1 px-3 text-xs font-semibold text-black bg-orange-400 border-2 border-orange-300 rounded cursor-pointer"
-            onClick={() =>
-              isEditing ? onEdit(newItemName) : setIsEditing(true)
-            }
+            className="ml-1 btn btn-xs font-semibold text-black bg-orange-500 border-2 border-orange-300 hover:bg-orange-300 hover:border-orange-200 rounded"
+            onClick={() => (isEditing ? onEdit() : setIsEditing(true))}
           >
             {isEditing ? "Update" : "Edit"}
           </button>
 
           {isEditing ? (
             <button
-              className="ml-1 py-1 px-3 text-xs font-semibold text-black bg-red-500 border-2 border-red-400 rounded cursor-pointer"
+              className="ml-1 btn btn-xs font-semibold text-black bg-red-500 border-2 border-red-500 hover:bg-red-400 hover:border-red-300 rounded"
               onClick={onCancel}
             >
               Cancel
             </button>
           ) : (
             <button
-              className="ml-2 py-1 px-1.5 text-xs font-semibold text-black bg-red-500 border-2 border-red-400 rounded cursor-pointer"
+              className="ml-2 btn btn-xs px-1 font-semibold text-black bg-red-500 border-2 border-red-500 hover:bg-red-400 hover:border-red-300 rounded"
               onClick={onDelete}
             >
               Delete
