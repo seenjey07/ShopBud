@@ -34,7 +34,7 @@ const ShopBud = () => {
 
   return (
     <>
-      <div className="flex flex-col align-center min-w-72 max-w-96 min-h-80 max-h-96 p-4 bg-blue-100 rounded-lg shadow-md overflow-auto">
+      <div className="flex flex-col align-center min-w-60 max-w-96 min-h-80 max-h-96 p-4 bg-blue-100 rounded-lg shadow-md overflow-auto">
         <h1 className="text-xl md:text-2xl xl:text-3xl font-bold mb-5 text-center text-blue-800">
           🛒ShopBud
         </h1>
