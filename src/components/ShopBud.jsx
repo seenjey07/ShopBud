@@ -5,7 +5,6 @@ import ShopItem from "./ShopItem";
 const ShopBud = () => {
   const [item, setItem] = useState("");
   const [listItems, setListItems] = useState([]);
-  const [editItem, setEditItem] = useState("");
 
   const handleAddItem = (e) => {
     e.preventDefault();
@@ -19,21 +18,14 @@ const ShopBud = () => {
     setItem("");
   };
 
-  const handleEditItem = (e) => {
-    e.preventDefault();
-
-    if (editItem) {
-      setListItems(
-        listItems.map((listItem) => {
-          if (listItem.id === editItem.id) {
-            return { ...listItem, itemName: item };
-          }
-          return listItem;
-        })
-      );
-      setEditItem("");
-      setItem("");
-    }
+  const handleEditItem = (id, newItemName) => {
+    const updatedItem = listItems.map((item) => {
+      if (item.id === id) {
+        return { ...item, itemName: newItemName };
+      }
+      return item;
+    });
+    setListItems(updatedItem);
   };
 
   const handleDeleteItem = (id) => {
@@ -42,14 +34,14 @@ const ShopBud = () => {
 
   return (
     <>
-      <div className="flex flex-col align-center w-full h-50 max-h-96 max-w-96 p-4 bg-blue-100 rounded-lg shadow-md overflow-auto">
-        <h1 className="text-2xl font-bold mb-5 text-center text-blue-800">
+      <div className="flex flex-col align-center min-w-72 max-w-96 min-h-80 max-h-96 p-4 bg-blue-100 rounded-lg shadow-md overflow-auto">
+        <h1 className="text-xl md:text-2xl xl:text-3xl font-bold mb-5 text-center text-blue-800">
           🛒ShopBud
         </h1>
         <div className="flex flex-col justify-between w-full">
           <div className="flex justify-between mb-4">
             <input
-              className="flex-grow p-1 text-sm font-thin rounded bg-white text-black border-2 border-gray-100 outline-none"
+              className="p-1 text-xs md:text-sm xl:text-md font-thin rounded bg-white text-black border-2 border-gray-100 outline-none"
               type="text"
               placeholder="Enter item..."
               value={item}
@@ -62,29 +54,16 @@ const ShopBud = () => {
             >
               Add Item
             </button>
-
-            {/* <button
-              className="ml-2 py-1.5 px-3.5 text-xs font-semibold text-black bg-orange-400 border-none rounded cursor-pointer"
-              onClick={handleEditItem}
-            >
-              Edit
-            </button>
-
-            <button
-              className="ml-2 py-1 px-2 text-xs font-semibold text-black bg-red-500 border-none rounded cursor-pointer"
-              onClick={handleDeleteItem}
-            >
-              Delete
-            </button> */}
           </div>
           <div>
             <ul className="w-full">
               {listItems.map((item) => (
                 <ShopItem
                   key={item.id}
+                  id={item.id}
                   itemName={item.itemName}
-                  onEdit={() => handleEditItem(item.itemName)}
-                  onDelete={() => handleDeleteItem(item.id)}
+                  handleEditItem={handleEditItem}
+                  handleDeleteItem={handleDeleteItem}
                 />
               ))}
             </ul>
@@ -98,7 +77,9 @@ const ShopBud = () => {
               Clear List
             </button>
           ) : (
-            <span className="m-auto mt-4 text-sm">Add your first item 🛍️</span>
+            <span className="m-auto mt-4 text-xs md:text-sm xl:text-md">
+              Add your first item 🛍️
+            </span>
           )}
         </div>
       </div>
