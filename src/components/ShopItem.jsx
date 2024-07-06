@@ -1,9 +1,13 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ShopItem = ({ id, itemName, handleEditItem, handleDeleteItem }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newItemName, setNewItemName] = useState(itemName);
+
+  useEffect(() => {
+    setNewItemName(itemName);
+  }, [itemName]);
 
   const onEdit = () => {
     handleEditItem(id, newItemName);
