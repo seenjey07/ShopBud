@@ -3,9 +3,7 @@ import ShopBud from "./components/ShopBud";
 function App() {
   return (
     <>
-      <div>
-        <ShopBud />
-      </div>
+      <ShopBud />
     </>
   );
 }
