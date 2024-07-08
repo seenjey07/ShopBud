@@ -28,20 +28,20 @@ const ShopItem = ({ id, itemName, handleEditItem, handleDeleteItem }) => {
       <li className="flex justify-between">
         {isEditing ? (
           <input
-            className="flex-grow p-1 text-sm font-thin rounded bg-white text-black border-none outline-none"
+            className="flex-grow p-1 text-xs font-thin rounded bg-white text-black border-none outline-none"
             type="text"
             value={newItemName}
             onChange={(e) => setNewItemName(e.target.value)}
           />
         ) : (
-          <span className="pl-1 font-semibold text-black text-sm self-center">
+          <span className="pl-1 font-semibold text-black text-xs self-center">
             {itemName}
           </span>
         )}
 
         <div className="flex flex-row justify-between items-center">
           <button
-            className="ml-1 btn btn-xs px-1 font-semibold bg-transparent border-2 border-orange-300 hover:bg-orange-400 hover:border-orange-200 rounded"
+            className="ml-1 btn btn-xs px-1 font-semibold bg-transparent border-2 border-orange-300 hover:bg-orange-300 hover:border-orange-200 rounded"
             onClick={() => (isEditing ? onEdit() : setIsEditing(true))}
           >
             {isEditing ? "💾" : "✏️"}
@@ -56,7 +56,7 @@ const ShopItem = ({ id, itemName, handleEditItem, handleDeleteItem }) => {
             </button>
           ) : (
             <button
-              className="ml-2 btn btn-xs px-1 font-semibold  bg-transparent border-2 border-red-500 hover:bg-red-500 hover:border-red-300 rounded"
+              className="ml-2 btn btn-xs px-1 font-semibold bg-transparent border-2 border-red-500 hover:bg-red-400 hover:border-red-300 rounded"
               onClick={onDelete}
             >
               ❌
