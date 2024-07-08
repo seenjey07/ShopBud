@@ -12,6 +12,20 @@ const ShopBud = () => {
   const endOfListRef = useRef();
 
   useEffect(() => {
+    const savedListItems = JSON.parse(localStorage.getItem("listItems"));
+    if (savedListItems) {
+      setListItems(savedListItems);
+    }
+    inputRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    if (listItems.length > 0) {
+      localStorage.setItem("listItems", JSON.stringify(listItems));
+    }
+  }, [listItems]);
+
+  useEffect(() => {
     inputRef.current.focus();
   }, []);
 
