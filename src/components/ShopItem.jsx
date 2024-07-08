@@ -41,25 +41,25 @@ const ShopItem = ({ id, itemName, handleEditItem, handleDeleteItem }) => {
 
         <div className="flex flex-row justify-between items-center">
           <button
-            className="ml-1 btn btn-xs font-semibold text-black bg-transparent border-2 border-orange-300 hover:bg-orange-400 hover:border-orange-200 rounded"
+            className="ml-1 btn btn-xs px-1 font-semibold bg-transparent border-2 border-orange-300 hover:bg-orange-400 hover:border-orange-200 rounded"
             onClick={() => (isEditing ? onEdit() : setIsEditing(true))}
           >
-            {isEditing ? "Save" : "Edit"}
+            {isEditing ? "💾" : "✏️"}
           </button>
 
           {isEditing ? (
             <button
-              className="ml-1 btn btn-xs font-semibold text-black bg-transparent border-2 border-red-500 hover:bg-red-500 hover:border-red-300 rounded"
+              className="ml-1 btn btn-xs px-1 font-semibold bg-transparent border-2 border-red-500 hover:bg-red-500 hover:border-red-300 rounded"
               onClick={onCancel}
             >
-              Cancel
+              ✖️
             </button>
           ) : (
             <button
-              className="ml-2 btn btn-xs px-1 font-semibold text-black bg-transparent border-2 border-red-500 hover:bg-red-500 hover:border-red-300 rounded"
+              className="ml-2 btn btn-xs px-1 font-semibold  bg-transparent border-2 border-red-500 hover:bg-red-500 hover:border-red-300 rounded"
               onClick={onDelete}
             >
-              Delete
+              ❌
             </button>
           )}
         </div>
