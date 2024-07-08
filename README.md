@@ -83,4 +83,4 @@ For any inquiries, feel free to reach out:
 - **Email:** chrosales07@gmail.com
 - **GitHub:** [seenjey07](https://github.com/seenjey07)
 
-# Special thanks to DevDotCom (Youtube and Tiktok) whose works served as my guide in making this app. 🫡
+**Special thanks to DevDotCom (Youtube and TikTok) whose works served as my guide in making this app. 🫡**
