@@ -10,11 +10,11 @@ ShopBud is a sleek and intuitive shopping companion app created using Vite. With
 
 ## Screenshots
 
-(For later...)
+![ShopBud Sample List](image.png)
 
 ## Demo
 
-(For later...)
+https://seenj-shopbud.netlify.app/
 
 ## Installation
 
@@ -22,7 +22,7 @@ To get started with ShopBud, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/shopbud.git
+   git clone https://github.com/seenjey07/ShopBud.git
    ```
 2. **Navigate to the project directory:**
 
