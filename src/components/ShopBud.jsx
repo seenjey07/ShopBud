@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import "../App.css";
 import { v4 as uuid } from "uuid";
 import ShopItem from "./ShopItem";
 import ShopBudImg from "../assets/background-image.jpg";
@@ -8,15 +9,23 @@ const ShopBud = () => {
   const [listItems, setListItems] = useState([]);
   const [error, setError] = useState("");
   const inputRef = useRef();
+  const endOfListRef = useRef();
 
   useEffect(() => {
     inputRef.current.focus();
   }, []);
 
+  useEffect(() => {
+    if (endOfListRef.current) {
+      endOfListRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [listItems]);
+
   const handleAddItem = (e) => {
     e.preventDefault();
 
-    const trimmedItem = item.trim().toLowerCase();
+    const trimmedItem = item.trim();
+    const lowercasedItem = trimmedItem.toLowerCase();
 
     if (!trimmedItem && listItems.length === 0) {
       setError("You haven't added any items yet.");
@@ -32,7 +41,11 @@ const ShopBud = () => {
       return;
     }
 
-    if (listItems.find((listItem) => listItem.itemName === trimmedItem)) {
+    if (
+      listItems.find(
+        (listItem) => listItem.lowercaseItemName === lowercasedItem
+      )
+    ) {
       setError("Item already on list. Please add a different one.");
       setItem("");
       inputRef.current.focus();
@@ -40,7 +53,10 @@ const ShopBud = () => {
       return;
     }
 
-    setListItems([...listItems, { id: uuid(), itemName: trimmedItem }]);
+    setListItems([
+      ...listItems,
+      { id: uuid(), itemName: trimmedItem, lowercaseItemName: lowercasedItem },
+    ]);
     setItem("");
     setError("");
 
@@ -48,7 +64,8 @@ const ShopBud = () => {
   };
 
   const handleEditItem = (id, newItemName) => {
-    const trimmedNewItemName = newItemName.trim().toLowerCase();
+    const trimmedNewItemName = newItemName.trim();
+    const lowercasedNewItemName = trimmedNewItemName.toLowerCase();
 
     if (trimmedNewItemName === "") {
       setError("Please add a valid item.");
@@ -56,7 +73,9 @@ const ShopBud = () => {
       return;
     }
 
-    if (listItems.some((item) => item.itemName === trimmedNewItemName)) {
+    if (
+      listItems.some((item) => item.lowercaseItemName === lowercasedNewItemName)
+    ) {
       setError("Item already on list. Please add a different one.");
 
       clearErrorAfterTimeout();
@@ -65,7 +84,11 @@ const ShopBud = () => {
 
     const updatedItems = listItems.map((item) => {
       if (item.id === id) {
-        return { ...item, itemName: trimmedNewItemName };
+        return {
+          ...item,
+          itemName: trimmedNewItemName,
+          lowercaseItemName: lowercasedNewItemName,
+        };
       }
       return item;
     });
@@ -84,11 +107,11 @@ const ShopBud = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-screen h-screen bg-cyan-200">
+    <div className="flex flex-col justify-center items-center w-screen h-screen bg-black">
       <img
         src={ShopBudImg}
         alt="ShopBud"
-        className="top-0 left-0 w-full h-full bg-contain opacity-95"
+        className="top-0 left-0 w-full h-full bg-contain opacity-65"
       />
 
       <div className="absolute flex flex-col w-72 sm:w-80 h-96 py-4 px-2 rounded-lg shadow-lg bg-blue-200 shadow-white">
@@ -129,7 +152,7 @@ const ShopBud = () => {
             </div>
           )}
 
-          <div className="flex flex-col w-full h-60 overflow-auto border-b-2">
+          <div className="flex flex-col w-full h-56 overflow-auto border-b-2">
             {listItems.length === 0 && !error && (
               <span className="m-auto mt-4 text-xs">
                 Add your first item 🛍️
@@ -146,6 +169,7 @@ const ShopBud = () => {
                   handleDeleteItem={handleDeleteItem}
                 />
               ))}
+              <div ref={endOfListRef} />
             </ul>
           </div>
 
